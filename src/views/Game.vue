@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1 class="text-3xl">Datathon Landing page</h1>
+    <h1 class="text-3xl">Game</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "Game"
 };
 </script>
