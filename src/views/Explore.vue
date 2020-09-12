@@ -83,6 +83,8 @@
         ></iframe>
       </div>
     </div>
+    <router-link to="/">Home</router-link>
+    <router-link to="/yourvoice">Next</router-link>    
   </Layout>
 </template>
 

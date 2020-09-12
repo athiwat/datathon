@@ -59,7 +59,10 @@
         </button>
       </div>
     </div>
+    <router-link to="/">Home</router-link>
+    <router-link to="/explore">Next</router-link>
   </Layout>
+
 </template>
 
 <script>
