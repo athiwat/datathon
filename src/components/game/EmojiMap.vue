@@ -23,9 +23,14 @@ import BangkokMap from "./BangkokMap";
 
 export default {
   name: "EmojiMap",
-  props: ["emojis", "fontSizeMultiplier"],
+  props: ["topics", "fontSizeMultiplier"],
   components: {
     BangkokMap
+  },
+  computed: {
+    emojis() {
+      return this.topics.map(({ emoji }) => emoji);
+    }
   }
 };
 </script>

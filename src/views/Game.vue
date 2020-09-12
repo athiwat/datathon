@@ -11,7 +11,7 @@
       </h2>
     </div>
     <div v-if="isSorting">
-      <EmojiMap :emojis="topicEmojis" :fontSizeMultiplier="3" />
+      <EmojiMap :topics="selectedTopics" :fontSizeMultiplier="3" />
     </div>
     <draggable
       tag="div"
@@ -44,7 +44,7 @@
             numberOfSelectableTopic !== 0 ? 'opacity-50 cursor-not-allowed' : ''
           }`
         "
-        @click="proceedToSorting()"
+        @click="next()"
       >
         Next
       </button>
@@ -56,6 +56,8 @@
 import draggable from "vuedraggable";
 import TopicCard from "../components/game/TopicCard";
 import EmojiMap from "../components/game/EmojiMap";
+import { mapMutations } from "vuex";
+import { COLLECTION } from "../storage/collection";
 
 const MAX_SELECTED_TOPICS = 5;
 const topics = [
@@ -93,12 +95,10 @@ export default {
         MAX_SELECTED_TOPICS -
         this.topics.filter(({ isSelected }) => isSelected).length
       );
-    },
-    topicEmojis() {
-      return this.selectedTopics.map(({ emoji }) => emoji);
     }
   },
   methods: {
+    ...mapMutations(["saveToStore"]),
     selectOption(index) {
       if (this.isSorting) {
         return;
@@ -113,9 +113,20 @@ export default {
         });
       }
     },
-    proceedToSorting() {
-      this.selectedTopics = this.topics.filter(({ isSelected }) => isSelected);
-      this.isSorting = true;
+    next() {
+      if (!this.isSorting) {
+        this.selectedTopics = this.topics.filter(
+          ({ isSelected }) => isSelected
+        );
+        this.isSorting = true;
+      } else {
+        this.saveToStore({
+          collection: COLLECTION.Game,
+          data: this.selectedTopics
+        });
+
+        this.$router.push("/game-result");
+      }
     }
   }
 };
