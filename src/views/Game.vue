@@ -1,62 +1,72 @@
 <template>
-  <div class="flex flex-col space-y-4">
-    <h1 class="text-3xl">Game</h1>
-    <div>
-      <h2 class="text-xl">
-        {{
-          !isSorting
-            ? `เลือกปัญหาที่อยากได้รับหารแก้ไขทั้งหมด 5 อันดับ (เหลืออีก ${numberOfSelectableTopic})`
-            : "เรียงลำดับตามความสำคัญ"
-        }}
-      </h2>
-    </div>
-    <div v-if="isSorting">
-      <Motto :topics="selectedTopics" />
-      <EmojiMap :topics="selectedTopics" :fontSizeMultiplier="3" />
-    </div>
-    <draggable
-      tag="div"
-      class="grid grid-cols-5 gap-4"
-      v-model="selectedTopics"
-      :animation="200"
-      ghostClass="opacity-0"
-      :disabled="!isSorting"
-    >
-      <TopicCard
-        v-for="(topic, index) in displayTopics"
-        :key="topic.name"
-        :topic="topic"
-        :onClick="() => selectOption(index)"
-        :isSorting="isSorting"
-      />
-    </draggable>
+  <Layout
+    color="#FECC2F"
+    page="Bangkok in your dream"
+    title="สร้างเมืองในฝัน"
+    subtitle="จินตนาการว่าตัวเองเป็นผู้ว่ากรุงเทพฯ แล้วลองเลือกพัฒนาเมืองตามประเด็นที่คุณสนใจ"
+  >
+    <div class="flex flex-col space-y-4">
+      <h1 class="text-3xl">Game</h1>
+      <div>
+        <h2 class="text-xl">
+          {{
+            !isSorting
+              ? `เลือกปัญหาที่อยากได้รับหารแก้ไขทั้งหมด 5 อันดับ (เหลืออีก ${numberOfSelectableTopic})`
+              : "เรียงลำดับตามความสำคัญ"
+          }}
+        </h2>
+      </div>
+      <div v-if="isSorting">
+        <Motto :topics="selectedTopics" />
+        <EmojiMap :topics="selectedTopics" :fontSizeMultiplier="3" />
+      </div>
+      <draggable
+        tag="div"
+        class="grid grid-cols-5 gap-4"
+        v-model="selectedTopics"
+        :animation="200"
+        ghostClass="opacity-0"
+        :disabled="!isSorting"
+      >
+        <TopicCard
+          v-for="(topic, index) in displayTopics"
+          :key="topic.name"
+          :topic="topic"
+          :onClick="() => selectOption(index)"
+          :isSorting="isSorting"
+        />
+      </draggable>
 
-    <div class="text-right space-x-2">
-      <button
-        v-if="isSorting"
-        class="rounded bg-gray-300 px-4 py-2"
-        @click="isSorting = false"
-      >
-        Back
-      </button>
-      <button
-        :class="
-          `rounded bg-gray-300 px-4 py-2 ${
-            numberOfSelectableTopic !== 0 ? 'opacity-50 cursor-not-allowed' : ''
-          }`
-        "
-        @click="next()"
-      >
-        Next
-      </button>
+      <div class="text-right space-x-2">
+        <button
+          v-if="isSorting"
+          class="rounded bg-gray-300 px-4 py-2"
+          @click="isSorting = false"
+        >
+          Back
+        </button>
+        <button
+          :class="
+            `rounded bg-gray-300 px-4 py-2 ${
+              numberOfSelectableTopic !== 0
+                ? 'opacity-50 cursor-not-allowed'
+                : ''
+            }`
+          "
+          @click="next()"
+        >
+          Next
+        </button>
+      </div>
     </div>
-  </div>
+  </Layout>
 </template>
 
 <script>
 import draggable from "vuedraggable";
 import { mapMutations } from "vuex";
 
+import Layout from "../layouts/default";
 import TopicCard from "../components/game/TopicCard";
 import EmojiMap from "../components/game/EmojiMap";
 import Motto from "../components/game/Motto";
@@ -139,7 +149,8 @@ export default {
     draggable,
     TopicCard,
     EmojiMap,
-    Motto
+    Motto,
+    Layout
   },
   data() {
     return {
