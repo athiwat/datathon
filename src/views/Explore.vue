@@ -87,5 +87,11 @@
 </template>
 
 <script>
-export default {};
+import Layout from "../layouts/default";
+
+export default {
+  components: {
+    Layout
+  }
+};
 </script>

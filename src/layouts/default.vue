@@ -49,7 +49,7 @@ export default {
   props: ["color", "page", "title", "subtitle"],
   computed: {
     containerStyle() {
-      return `background: linear-gradient(180deg, ${this.color} 0%, rgba(255, 255, 255, 0) 80%);`;
+      return `background: linear-gradient(180deg, ${this.color} 0%, rgba(255, 255, 255, 0) 100%);`;
     }
   }
 };
