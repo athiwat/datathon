@@ -1,13 +1,28 @@
 <template>
   <div>
     <iframe
-      id="typeform-full"
-      width="100%"
-      height="100%"
+      src="https://flo.uri.sh/visualisation/3720265/embed"
       frameborder="0"
-      allow="camera; microphone; autoplay; encrypted-media;"
-      src="https://form.typeform.com/to/zigHAaRf"
+      scrolling="no"
+      style="width:100%;height:1000px;"
+      aria-label=""
     ></iframe>
+    <div
+      style="width:100%!;margin-top:4px!important;text-align:right!important;"
+    >
+      <a
+        class="flourish-credit"
+        href="https://public.flourish.studio/visualisation/3720265/?utm_source=embed&utm_campaign=visualisation/3720265"
+        target="_top"
+        style="text-decoration:none!important"
+      >
+        <img
+          alt="Made with Flourish"
+          src="https://public.flourish.studio/resources/made_with_flourish.svg"
+          style="width:105px!important;height:16px!important;border:none!important;margin:0!important;"
+        />
+      </a>
+    </div>
   </div>
 </template>
 
