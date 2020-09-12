@@ -1,24 +1,31 @@
 <template>
-  <div class="flex flex-row m-auto justify-center">
-    <div
-      v-for="(emoji, index) in emojis"
-      :key="index"
-      class="flex flex-col justify-end leading-none px-2"
-      :style="`fontSize: ${(emojis.length - index) * FONT_SIZE_MULTIPLIER}vw;`"
-    >
-      {{ emoji }}
+  <div class="relative">
+    <div class="flex flex-row absolute inset-0 pb-24">
+      <div class="flex flex-row justify-center m-auto">
+        <div
+          v-for="(emoji, index) in emojis"
+          :key="index"
+          class="flex flex-col justify-end leading-none px-2"
+          :style="
+            `fontSize: ${(emojis.length - index) * fontSizeMultiplier}vw;`
+          "
+        >
+          {{ emoji }}
+        </div>
+      </div>
     </div>
+    <BangkokMap />
   </div>
 </template>
 
 <script>
+import BangkokMap from "./BangkokMap";
+
 export default {
   name: "EmojiMap",
-  props: ["emojis"],
-  data() {
-    return {
-      FONT_SIZE_MULTIPLIER: 3
-    };
+  props: ["emojis", "fontSizeMultiplier"],
+  components: {
+    BangkokMap
   }
 };
 </script>

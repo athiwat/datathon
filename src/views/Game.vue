@@ -11,7 +11,7 @@
       </h2>
     </div>
     <div v-if="isSorting">
-      <EmojiMap :emojis="topicEmojis" />
+      <EmojiMap :emojis="topicEmojis" :fontSizeMultiplier="3" />
     </div>
     <draggable
       tag="div"
