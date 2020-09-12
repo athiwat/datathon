@@ -3,9 +3,15 @@
     <div class="flex flex-col max-w-screen-lg m-auto py-12 space-y-12">
       <div class="flex flex-col space-y-4 text-center">
         <div class="flex flex-row">
-          <div class="flex-1">Quiz</div>
-          <div class="flex-1">Explore</div>
-          <div class="flex-1">Bangkok in your dream</div>
+          <div class="flex-1">
+            <router-link to="quiz">Quiz</router-link>
+          </div>
+          <div class="flex-1">
+            <router-link to="explore">Explore</router-link>
+          </div>
+          <div class="flex-1">
+            <router-link to="game">Bangkok in your dream</router-link>
+          </div>
         </div>
         <div class="flex flex-row">
           <div class="flex-1 flex flex-row">
