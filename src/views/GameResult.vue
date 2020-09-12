@@ -5,12 +5,13 @@
       <div class="flex flex-col flex-1">
         <h1 class="text-3xl">You</h1>
         <div>
+          <Motto :topics="game" />
           <EmojiMap :topics="game" :fontSizeMultiplier="1.5" />
         </div>
         <div class="grid grid-cols-5 gap-4">
           <TopicCard
             v-for="topic in game"
-            :key="topic.key"
+            :key="topic.name"
             :topic="topic"
             :onClick="() => null"
           />
@@ -19,6 +20,7 @@
       <div class="flex flex-col flex-1">
         <h1 class="text-3xl">Other people</h1>
         <div>
+          <Motto :topics="mockedPublicData" />
           <EmojiMap :topics="mockedPublicData" :fontSizeMultiplier="1.5" />
         </div>
         <div class="grid grid-cols-5 gap-4">
@@ -38,22 +40,40 @@
 import { mapState } from "vuex";
 import EmojiMap from "../components/game/EmojiMap";
 import TopicCard from "../components/game/TopicCard";
+import Motto from "../components/game/Motto";
 import { COLLECTION } from "../storage/collection";
 
 export default {
   name: "GameResult",
   components: {
     EmojiMap,
-    TopicCard
+    TopicCard,
+    Motto
   },
   data() {
     return {
       mockedPublicData: [
-        { key: "transportation", name: "การคมนาคม", emoji: "🚙" },
-        { key: "environment", name: "สิ่งแวดล้อม", emoji: "🌲" },
-        { key: "public_space", name: "พื้นที่สาธารณะ", emoji: "🚶‍♂️" },
-        { key: "safety", name: "ความปลอดภัย", emoji: "🦺" },
-        { key: "flood", name: "น้ำท่วม", emoji: "🌊" }
+        { name: "ปัญหาน้ำท่วม", emoji: "📖", motto: "ระบายน้ำไว" },
+        {
+          name: "ปัญหารถติด",
+          emoji: "📇",
+          motto: "ขับขี่แคล่วคล่อง"
+        },
+        {
+          name: "พัฒนาการศึกษา",
+          emoji: "🌊",
+          motto: "ให้คุณค่ากับนักเรียน"
+        },
+        {
+          name: "พื้นที่สีเขียว",
+          emoji: "📖",
+          motto: "ต้นไม้ใหญ่น้อย"
+        },
+        {
+          name: "ระบบขนส่งสาธารณะ",
+          emoji: "💊",
+          motto: "เดินทางแสนสะดวก"
+        }
       ]
     };
   },
