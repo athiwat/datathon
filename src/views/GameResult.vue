@@ -53,25 +53,25 @@ export default {
   data() {
     return {
       mockedPublicData: [
-        { name: "ปัญหาน้ำท่วม", emoji: "📖", motto: "ระบายน้ำไว" },
+        { name: "ปัญหาน้ำท่วม", emoji: "🌊", motto: "ระบายน้ำไว" },
         {
           name: "ปัญหารถติด",
-          emoji: "📇",
+          emoji: "🚘",
           motto: "ขับขี่แคล่วคล่อง"
         },
         {
           name: "พัฒนาการศึกษา",
-          emoji: "🌊",
+          emoji: "🎓",
           motto: "ให้คุณค่ากับนักเรียน"
         },
         {
           name: "พื้นที่สีเขียว",
-          emoji: "📖",
+          emoji: "🌲",
           motto: "ต้นไม้ใหญ่น้อย"
         },
         {
           name: "ระบบขนส่งสาธารณะ",
-          emoji: "💊",
+          emoji: "🚍",
           motto: "เดินทางแสนสะดวก"
         }
       ]
