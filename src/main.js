@@ -1,10 +1,14 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import store from "./storage/vuex";
+import { firestorePlugin } from "vuefire";
+
 import "./assets/tailwind.css";
 
 Vue.config.productionTip = false;
+
+Vue.use(firestorePlugin);
 
 new Vue({
   router,

@@ -10,11 +10,27 @@
     <div />
 
     <router-link to="/yourvoice">Your voice</router-link>
+    
+    <button class="rounded px-4 py-2 bg-blue-600 text-white" @click="start">
+      Start (init user id)
+    </button>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { COLLECTION } from "../storage/collection";
+
 export default {
-  name: "Home"
+  name: "Home",
+  methods: {
+    ...mapActions(["saveCollectionToFirebase"]),
+    start() {
+      this.saveCollectionToFirebase({
+        collection: COLLECTION.User
+      });
+      // go to next page
+    }
+  }
 };
 </script>
