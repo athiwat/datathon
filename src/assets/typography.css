@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "IBM Plex Sans Thai";
+  font-weight: normal;
+  src: local("IBM Plex Sans Thai"), local("IBMPlexSansThai"),
+    url("./fonts/IBMPlexSansThai-Regular.ttf");
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Thai";
+  font-weight: bold;
+  src: local("IBM Plex Sans Thai Bold"), local("IBMPlexSansThaiBold"),
+    url("./fonts/IBMPlexSansThai-Bold.ttf");
+}

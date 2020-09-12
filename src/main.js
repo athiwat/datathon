@@ -5,6 +5,7 @@ import store from "./storage/vuex";
 import { firestorePlugin } from "vuefire";
 
 import "./assets/tailwind.css";
+import "./assets/typography.css";
 
 Vue.config.productionTip = false;
 
