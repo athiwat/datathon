@@ -19,6 +19,18 @@ const routes = [
     path: "/quiz",
     name: "Quiz",
     component: () => import(/* webpackChunkName: "game" */ "../views/Quiz.vue")
+  },
+  {
+    path: "/explore",
+    name: "Explore",
+    component: () =>
+      import(/* webpackChunkName: "game" */ "../views/Explore.vue")
+  },
+  {
+    path: "/yourvoice",
+    name: "YourVoice",
+    component: () =>
+      import(/* webpackChunkName: "game" */ "../views/YourVoice.vue")
   }
 ];
 
