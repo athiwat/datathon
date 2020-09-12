@@ -5,37 +5,45 @@
     title="สร้างเมืองในฝัน"
     subtitle="จินตนาการว่าตัวเองเป็นผู้ว่ากรุงเทพฯ แล้วลองเลือกพัฒนาเมืองตามประเด็นที่คุณสนใจ"
   >
-    <div>
-      <h1 class="text-5xl">Game result</h1>
-      <div class="flex flex-row space-x-10">
-        <div class="flex flex-col flex-1">
-          <h1 class="text-3xl">You</h1>
-          <div>
-            <Motto :topics="game" />
-            <EmojiMap :topics="game" :fontSizeMultiplier="1.5" />
+    <div class="flex flex-row">
+      <div class="flex flex-col space-y-24">
+        <div class="flex flex-col space-y-8">
+          <h1 class="text-3xl">เมืองที่ทุกคนร่วมสร้าง</h1>
+          <div class="space-y-8">
+            <Motto :topics="mockedPublicData" />
+            <EmojiMap :topics="mockedPublicData" :fontSizeMultiplier="2" />
           </div>
           <div class="grid grid-cols-5 gap-4">
             <TopicCard
-              v-for="topic in game"
+              v-for="topic in mockedPublicData"
               :key="topic.name"
               :topic="topic"
               :onClick="() => null"
             />
           </div>
         </div>
-        <div class="flex flex-col flex-1">
-          <h1 class="text-3xl">Other people</h1>
-          <div>
-            <Motto :topics="mockedPublicData" />
-            <EmojiMap :topics="mockedPublicData" :fontSizeMultiplier="1.5" />
-          </div>
-          <div class="grid grid-cols-5 gap-4">
-            <TopicCard
-              v-for="topic in mockedPublicData"
-              :key="topic.key"
-              :topic="topic"
-              :onClick="() => null"
-            />
+        <div class="flex flex-col flex-1 space-y-8">
+          <h1 class="text-3xl">กรุงเทพฯ ของคุณ</h1>
+          <Motto :topics="game" />
+          <div class="flex flex-row space-x-16">
+            <div class="flex-1">
+              <EmojiMap :topics="game" :fontSizeMultiplier="1" />
+            </div>
+            <div class="flex-1 flex flex-col space-y-8">
+              <div class="grid grid-cols-3 gap-2">
+                <TopicCard
+                  v-for="topic in game"
+                  :key="topic.key"
+                  :topic="topic"
+                  :onClick="() => null"
+                />
+              </div>
+              <div class="text-center">
+                <button class="rounded bg-gray-300 px-4 py-2 w-full">
+                  แบ่งปัน
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

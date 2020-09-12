@@ -6,19 +6,18 @@
     subtitle="จินตนาการว่าตัวเองเป็นผู้ว่ากรุงเทพฯ แล้วลองเลือกพัฒนาเมืองตามประเด็นที่คุณสนใจ"
   >
     <div class="flex flex-col space-y-4">
-      <h1 class="text-3xl">Game</h1>
+      <div v-if="isSorting" class="space-y-24 mb-24 px-24">
+        <Motto :topics="selectedTopics" />
+        <EmojiMap :topics="selectedTopics" :fontSizeMultiplier="2" />
+      </div>
       <div>
-        <h2 class="text-xl">
+        <h2 class="font-bold">
           {{
             !isSorting
               ? `เลือกปัญหาที่อยากได้รับหารแก้ไขทั้งหมด 5 อันดับ (เหลืออีก ${numberOfSelectableTopic})`
-              : "เรียงลำดับตามความสำคัญ"
+              : "เรียงลำดับตามความสำคัญจากมากไปน้อย"
           }}
         </h2>
-      </div>
-      <div v-if="isSorting">
-        <Motto :topics="selectedTopics" />
-        <EmojiMap :topics="selectedTopics" :fontSizeMultiplier="3" />
       </div>
       <draggable
         tag="div"

@@ -1,7 +1,7 @@
 <template>
-  <div class="text-center w-full">
-    <p>คำขวัญ</p>
-    <p class="text-2xl">"{{ motto }}"</p>
+  <div class="text-center w-full space-y-2">
+    <p class="text-gray-600">คำขวัญ</p>
+    <p class="text-2xl">"กรุงเทพฯ {{ motto }}"</p>
   </div>
 </template>
 

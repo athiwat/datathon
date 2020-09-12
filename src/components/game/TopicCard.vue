@@ -1,13 +1,13 @@
 <template>
   <div
     :class="
-      `p-5 text-center rounded shadow border-2 ${
-        !isSorting && topic.isSelected ? 'border-green-400' : ''
-      } ${isSorting ? 'cursor-move' : 'cursor-pointer'}`
+      `px-4 py-2 text-center rounded shadow border-2 flex justify-center cursor-pointer ${
+        topic.isSelected ? 'border-green-400' : ''
+      } ${isSorting ? 'cursor-pointer' : ''}`
     "
     @click="onClick"
   >
-    {{ topic.name }}
+    <div class="m-auto">{{ topic.name }}</div>
   </div>
 </template>
 

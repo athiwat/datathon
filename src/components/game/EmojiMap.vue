@@ -7,7 +7,7 @@
           :key="index"
           class="flex flex-col justify-end leading-none px-2"
           :style="
-            `fontSize: ${(emojis.length - index) * fontSizeMultiplier}vw;`
+            `fontSize: ${(emojis.length - index) * fontSizeMultiplier}em;`
           "
         >
           {{ emoji }}
