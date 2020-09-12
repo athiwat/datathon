@@ -1,43 +1,52 @@
 <template>
-  <div>
-    <h1 class="text-5xl">Game result</h1>
-    <div class="flex flex-row space-x-10">
-      <div class="flex flex-col flex-1">
-        <h1 class="text-3xl">You</h1>
-        <div>
-          <Motto :topics="game" />
-          <EmojiMap :topics="game" :fontSizeMultiplier="1.5" />
+  <Layout
+    color="#FECC2F"
+    page="Bangkok in your dream"
+    title="สร้างเมืองในฝัน"
+    subtitle="จินตนาการว่าตัวเองเป็นผู้ว่ากรุงเทพฯ แล้วลองเลือกพัฒนาเมืองตามประเด็นที่คุณสนใจ"
+  >
+    <div>
+      <h1 class="text-5xl">Game result</h1>
+      <div class="flex flex-row space-x-10">
+        <div class="flex flex-col flex-1">
+          <h1 class="text-3xl">You</h1>
+          <div>
+            <Motto :topics="game" />
+            <EmojiMap :topics="game" :fontSizeMultiplier="1.5" />
+          </div>
+          <div class="grid grid-cols-5 gap-4">
+            <TopicCard
+              v-for="topic in game"
+              :key="topic.name"
+              :topic="topic"
+              :onClick="() => null"
+            />
+          </div>
         </div>
-        <div class="grid grid-cols-5 gap-4">
-          <TopicCard
-            v-for="topic in game"
-            :key="topic.name"
-            :topic="topic"
-            :onClick="() => null"
-          />
-        </div>
-      </div>
-      <div class="flex flex-col flex-1">
-        <h1 class="text-3xl">Other people</h1>
-        <div>
-          <Motto :topics="mockedPublicData" />
-          <EmojiMap :topics="mockedPublicData" :fontSizeMultiplier="1.5" />
-        </div>
-        <div class="grid grid-cols-5 gap-4">
-          <TopicCard
-            v-for="topic in mockedPublicData"
-            :key="topic.key"
-            :topic="topic"
-            :onClick="() => null"
-          />
+        <div class="flex flex-col flex-1">
+          <h1 class="text-3xl">Other people</h1>
+          <div>
+            <Motto :topics="mockedPublicData" />
+            <EmojiMap :topics="mockedPublicData" :fontSizeMultiplier="1.5" />
+          </div>
+          <div class="grid grid-cols-5 gap-4">
+            <TopicCard
+              v-for="topic in mockedPublicData"
+              :key="topic.key"
+              :topic="topic"
+              :onClick="() => null"
+            />
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Layout>
 </template>
 
 <script>
 import { mapState } from "vuex";
+
+import Layout from "../layouts/default";
 import EmojiMap from "../components/game/EmojiMap";
 import TopicCard from "../components/game/TopicCard";
 import Motto from "../components/game/Motto";
@@ -48,7 +57,8 @@ export default {
   components: {
     EmojiMap,
     TopicCard,
-    Motto
+    Motto,
+    Layout
   },
   data() {
     return {
