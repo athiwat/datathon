@@ -10,10 +10,13 @@
         }}
       </h2>
     </div>
+    <div v-if="isSorting">
+      <EmojiMap :emojis="topicEmojis" />
+    </div>
     <draggable
       tag="div"
       class="grid grid-cols-5 gap-4"
-      v-model="topics"
+      v-model="selectedTopics"
       :animation="200"
       ghostClass="opacity-0"
       :disabled="!isSorting"
@@ -23,7 +26,6 @@
         :key="topic.key"
         :topic="topic"
         :onClick="() => selectOption(index)"
-        ฃ
         :isSorting="isSorting"
       />
     </draggable>
@@ -42,7 +44,7 @@
             numberOfSelectableTopic !== 0 ? 'opacity-50 cursor-not-allowed' : ''
           }`
         "
-        @click="isSorting = true"
+        @click="proceedToSorting()"
       >
         Next
       </button>
@@ -53,41 +55,47 @@
 <script>
 import draggable from "vuedraggable";
 import TopicCard from "../components/game/TopicCard";
+import EmojiMap from "../components/game/EmojiMap";
 
 const MAX_SELECTED_TOPICS = 5;
 const topics = [
-  { key: "transportation", name: "การคมนาคม" },
-  { key: "environment", name: "สิ่งแวดล้อม" },
-  { key: "public_space", name: "พื้นที่สาธารณะ" },
-  { key: "safety", name: "ความปลอดภัย" },
-  { key: "flood", name: "น้ำท่วม" },
-  { key: "inequality", name: "ค่าครองชีพและความเลื่อมล้ำ" },
-  { key: "education", name: "การศึกษา" },
-  { key: "health", name: "ระบบสาธารณะสุข" },
-  { key: "governance", name: "ระบบบริหารราชการ" }
+  { key: "transportation", name: "การคมนาคม", emoji: "🚙" },
+  { key: "environment", name: "สิ่งแวดล้อม", emoji: "🌲" },
+  { key: "public_space", name: "พื้นที่สาธารณะ", emoji: "🚶‍♂️" },
+  { key: "safety", name: "ความปลอดภัย", emoji: "🦺" },
+  { key: "flood", name: "น้ำท่วม", emoji: "🌊" },
+  { key: "inequality", name: "ค่าครองชีพและความเลื่อมล้ำ", emoji: "💸" },
+  { key: "education", name: "การศึกษา", emoji: "📖" },
+  { key: "health", name: "ระบบสาธารณะสุข", emoji: "💊" },
+  { key: "governance", name: "ระบบบริหารราชการ", emoji: "📇" }
 ];
 
 export default {
   name: "Game",
   components: {
     draggable,
-    TopicCard
+    TopicCard,
+    EmojiMap
   },
   data() {
     return {
       topics: topics.map(topic => ({ ...topic, isSelected: false })),
+      selectedTopics: [],
       isSorting: false
     };
   },
   computed: {
-    selectedTopics() {
-      return this.topics.filter(({ isSelected }) => isSelected);
-    },
     displayTopics() {
       return this.isSorting ? this.selectedTopics : this.topics;
     },
     numberOfSelectableTopic() {
-      return MAX_SELECTED_TOPICS - this.selectedTopics.length;
+      return (
+        MAX_SELECTED_TOPICS -
+        this.topics.filter(({ isSelected }) => isSelected).length
+      );
+    },
+    topicEmojis() {
+      return this.selectedTopics.map(({ emoji }) => emoji);
     }
   },
   methods: {
@@ -104,6 +112,10 @@ export default {
           isSelected
         });
       }
+    },
+    proceedToSorting() {
+      this.selectedTopics = this.topics.filter(({ isSelected }) => isSelected);
+      this.isSorting = true;
     }
   }
 };
