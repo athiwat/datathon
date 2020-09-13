@@ -12,6 +12,9 @@
           <div class="flex-1">
             <router-link to="game">Bangkok in your dream</router-link>
           </div>
+          <div class="flex-1">
+            <router-link to="yourvoice">Your voice</router-link>
+          </div>
         </div>
         <div class="flex flex-row">
           <div class="flex-1 flex flex-row">
