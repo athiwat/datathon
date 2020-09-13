@@ -5,7 +5,7 @@
     title="ตีแผ่ข้อมูลกรุงเทพ"
     subtitle="งบประมาณกรุงเทพทั้งภาพรวมและเจาะประเด็นรายเขต"
   >
-    <div class="text-center">
+    <div class="text-center space-y-24">
       <div>
         <h1 class="font-bold text-3xl">
           งบเพิ่มขึ้นทุกปี แต่กรุงเทพดีขึ้นจริง ๆ รึเปล่า
@@ -215,6 +215,11 @@
           aria-label
         ></iframe>
       </div>
+    </div>
+    <div class="text-right mt-12">
+      <router-link to="game" class="rounded bg-gray-300 px-4 py-2"
+        >ถัดไป</router-link
+      >
     </div>
   </Layout>
 </template>

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="text-center">
     <img src="../assets/construction.png" />
-    <router-link to="/">Home</router-link>
+    <router-link to="/">หน้าหลัก</router-link>
   </div>
 </template>
 

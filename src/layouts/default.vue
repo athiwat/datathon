@@ -36,7 +36,7 @@
         <h1 class="text-5xl font-bold">{{ title }}</h1>
         <p>{{ subtitle }}</p>
       </div>
-      <div class="shadow-xl bg-white px-10 py-8" style="border-radius: 50px;">
+      <div class="shadow-xl bg-white p-10" style="border-radius: 50px;">
         <slot></slot>
       </div>
     </div>

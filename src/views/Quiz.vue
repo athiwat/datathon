@@ -13,7 +13,9 @@
         style="width:100%;height:1000px;"
         aria-label
       ></iframe>
-      <div style="width:100%!;margin-top:4px!important;text-align:right!important;">
+      <div
+        style="width:100%!;margin-top:4px!important;text-align:right!important;"
+      >
         <a
           class="flourish-credit"
           href="https://public.flourish.studio/visualisation/3720265/?utm_source=embed&utm_campaign=visualisation/3720265"
@@ -26,6 +28,11 @@
             style="width:105px!important;height:16px!important;border:none!important;margin:0!important;"
           />
         </a>
+      </div>
+      <div class="text-right mt-8">
+        <router-link to="explore" class="rounded bg-gray-300 px-4 py-2"
+          >ถัดไป</router-link
+        >
       </div>
     </div>
   </Layout>

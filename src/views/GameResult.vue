@@ -8,7 +8,7 @@
     <div class="flex flex-row">
       <div class="flex flex-col space-y-24">
         <div class="flex flex-col space-y-8">
-          <h1 class="text-3xl">เมืองที่ทุกคนร่วมสร้าง</h1>
+          <h1 class="text-3xl font-bold text-center">เมืองที่ทุกคนร่วมสร้าง</h1>
           <div class="space-y-8">
             <Motto :topics="mockedPublicData" />
             <EmojiMap :topics="mockedPublicData" :fontSizeMultiplier="2" />
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="flex flex-col flex-1 space-y-8">
-          <h1 class="text-3xl">กรุงเทพฯ ของคุณ</h1>
+          <h1 class="text-3xl font-bold text-center">กรุงเทพฯ ของคุณ</h1>
           <Motto :topics="game" />
           <div class="flex flex-row space-x-16">
             <div class="flex-1">
@@ -39,9 +39,12 @@
                 />
               </div>
               <div class="text-center">
-                <button class="rounded bg-gray-300 px-4 py-2 w-full">
+                <router-link
+                  to="/construction"
+                  class="block rounded bg-gray-300 px-4 py-2 w-full"
+                >
                   แบ่งปัน
-                </button>
+                </router-link>
               </div>
             </div>
           </div>
