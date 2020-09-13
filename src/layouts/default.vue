@@ -30,6 +30,11 @@
           <div class="flex-1 flex flex-row">
             <div class="bg-black flex-1 m-auto" style="height: 1px;"></div>
             <div class="w-4 h-4 rounded-full bg-white m-auto"></div>
+            <div class="bg-black flex-1 m-auto" style="height: 1px;"></div>
+          </div>
+          <div class="flex-1 flex flex-row">
+            <div class="bg-black flex-1 m-auto" style="height: 1px;"></div>
+            <div class="w-4 h-4 rounded-full bg-white m-auto"></div>
             <div class="flex-1 m-auto"></div>
           </div>
         </div>
