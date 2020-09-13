@@ -8,7 +8,11 @@
       allow="camera; microphone; autoplay; encrypted-media;"
       src="https://form.typeform.com/to/zigHAaRf"
     ></iframe>
-    <!-- <router-link to="/">Home</router-link> -->
+    <div class="text-center">
+      <router-link to="/" class="block rounded bg-gray-300 px-4 py-2 w-full">
+        Home
+      </router-link>
+    </div>
   </div>
 </template>
 
