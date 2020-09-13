@@ -3,26 +3,32 @@
     color="#FECC2F"
     page="Bangkok in your dream"
     title="สร้างเมืองในฝัน"
-    subtitle="จินตนาการว่าตัวเองเป็นผู้ว่ากรุงเทพฯ แล้วลองเลือกพัฒนาเมืองตามประเด็นที่คุณสนใจ"
+    subtitle="จินตนาการว่าตัวเองเป็นผู้ว่ากรุงเทพฯ แล้วลองเลือกพัฒนาเมืองตามประเด็นที่คุณสนใจ แล้วลองมาดูกันว่า เมืองในฝันของคุณ กับเมืองในฝันของทุกคน ใกล้เคียงกันหรือไม่?"
   >
-    <div class="flex flex-col space-y-4">
-      <div v-if="isSorting" class="space-y-8 mb-12">
-        <Motto :topics="selectedTopics" />
-        <EmojiMap :topics="selectedTopics" :fontSizeMultiplier="2" />
-      </div>
-      <div>
-        <h2 class="font-bold">
+    <div class="flex flex-col space-y-8">
+      <div class="text-center">
+        <h2 class="font-bold text-3xl">
           {{
-            !isSorting
-              ? `เลือกปัญหาที่อยากได้รับการแก้ไขทั้งหมด 5 อันดับ (เหลืออีก ${numberOfSelectableTopic})`
-              : "เรียงลำดับตามความสำคัญจากมากไปน้อย"
+            isSelecting
+              ? "เลือก 5 ประเด็นที่คุณคิดว่า คนกรุงเทพฯ ควรได้รับการแก้ไขหรือพัฒนาให้ดีขึ้น"
+              : isSorting
+              ? "ต่อไป เรียงลำดับประเด็นความสำคัญจากมุมมองของคุณ"
+              : "และนี่... คือกรุงเทพในฝันของคุณ"
           }}
         </h2>
+        <p class="text-gray-500" v-if="!isReviewing">
+          {{
+            !isSorting
+              ? `ต้องเลือกอีก ${numberOfSelectableTopic} ประเด็น`
+              : "ลากซ้าย-ขวาเพื่อเรียงลำดับ"
+          }}
+        </p>
       </div>
       <draggable
         tag="div"
         class="grid grid-cols-5 gap-4 my-8"
         v-model="selectedTopics"
+        v-if="!isReviewing"
         :animation="200"
         ghostClass="opacity-0"
         :disabled="!isSorting"
@@ -35,6 +41,27 @@
           :isSorting="isSorting"
         />
       </draggable>
+
+      <div class="flex flex-row" v-if="isSorting">
+        <div class="flex-1">&lt; สำคัญมากที่สุด</div>
+        <div>สำคัญน้อยที่สุด &gt;</div>
+      </div>
+
+      <div v-if="isReviewing" class="space-y-8 mb-12">
+        <Motto :topics="selectedTopics" />
+        <EmojiMap :topics="selectedTopics" :fontSizeMultiplier="2" />
+      </div>
+
+      <div v-if="isReviewing" class="text-center">
+        <ul>
+          <li class="font-bold">
+            เมืองกรุงเทพที่คุณอยากเห็น คือเมืองที่ให้ความสำคัญในเรื่อง
+          </li>
+          <li v-for="topic in selectedTopics" :key="topic.name">
+            {{ topic.name }}
+          </li>
+        </ul>
+      </div>
 
       <div class="text-right space-x-2">
         <button
@@ -155,7 +182,7 @@ export default {
     return {
       topics: topics.map(topic => ({ ...topic, isSelected: false })),
       selectedTopics: [],
-      isSorting: false
+      state: 0
     };
   },
   computed: {
@@ -167,6 +194,15 @@ export default {
         MAX_SELECTED_TOPICS -
         this.topics.filter(({ isSelected }) => isSelected).length
       );
+    },
+    isSelecting() {
+      return this.state === 0;
+    },
+    isSorting() {
+      return this.state === 1;
+    },
+    isReviewing() {
+      return this.state === 2;
     }
   },
   methods: {
@@ -186,11 +222,13 @@ export default {
       }
     },
     next() {
-      if (!this.isSorting) {
+      if (this.isSelecting) {
         this.selectedTopics = this.topics.filter(
           ({ isSelected }) => isSelected
         );
-        this.isSorting = true;
+        this.state++;
+      } else if (this.isSorting) {
+        this.state++;
       } else {
         this.saveToStore({
           collection: COLLECTION.Game,
